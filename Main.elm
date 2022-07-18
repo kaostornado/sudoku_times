@@ -1,10 +1,10 @@
-module Test exposing (main)   
+module Main exposing (main)   
 
 import Browser
 import Html exposing (..)
 import Html.Events exposing (..)
 import Random
-
+import Html.Attributes exposing (..)
 
 
 -- MAIN
@@ -73,7 +73,11 @@ subscriptions model =
 
 view : Model -> Html Msg
 view model =
-  div []
+  div [class "has-text-centered"]
     [ h1 [] [ text (String.fromInt model.dieFace) ]
-    , button [ onClick Roll ] [ text "Roll" ]
+    , button [ class "button"
+              , class "has-background-danger-light"
+              , onClick Roll
+              ] 
+              [ text "Roll" ]
     ]

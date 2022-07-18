@@ -5427,6 +5427,15 @@ var $author$project$Main$update = F2(
 	});
 var $author$project$Main$Roll = {$: 'Roll'};
 var $elm$html$Html$button = _VirtualDom_node('button');
+var $elm$json$Json$Encode$string = _Json_wrap;
+var $elm$html$Html$Attributes$stringProperty = F2(
+	function (key, string) {
+		return A2(
+			_VirtualDom_property,
+			key,
+			$elm$json$Json$Encode$string(string));
+	});
+var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('className');
 var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$html$Html$h1 = _VirtualDom_node('h1');
 var $elm$virtual_dom$VirtualDom$Normal = function (a) {
@@ -5451,7 +5460,10 @@ var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
 var $author$project$Main$view = function (model) {
 	return A2(
 		$elm$html$Html$div,
-		_List_Nil,
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$class('has-text-centered')
+			]),
 		_List_fromArray(
 			[
 				A2(
@@ -5466,6 +5478,8 @@ var $author$project$Main$view = function (model) {
 				$elm$html$Html$button,
 				_List_fromArray(
 					[
+						$elm$html$Html$Attributes$class('button'),
+						$elm$html$Html$Attributes$class('has-background-danger-light'),
 						$elm$html$Html$Events$onClick($author$project$Main$Roll)
 					]),
 				_List_fromArray(
