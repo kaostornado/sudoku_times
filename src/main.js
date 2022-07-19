@@ -5436,8 +5436,240 @@ var $elm$html$Html$Attributes$stringProperty = F2(
 			$elm$json$Json$Encode$string(string));
 	});
 var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('className');
+var $elm$core$List$append = F2(
+	function (xs, ys) {
+		if (!ys.b) {
+			return xs;
+		} else {
+			return A3($elm$core$List$foldr, $elm$core$List$cons, ys, xs);
+		}
+	});
+var $elm$core$List$concat = function (lists) {
+	return A3($elm$core$List$foldr, $elm$core$List$append, _List_Nil, lists);
+};
 var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$html$Html$h1 = _VirtualDom_node('h1');
+var $elm$core$Basics$modBy = _Basics_modBy;
+var $author$project$Main$makeHorizontalLine = F2(
+	function (sqrtSize, index) {
+		var rowNumber = index + 1;
+		return (!A2($elm$core$Basics$modBy, sqrtSize, rowNumber)) ? $elm$html$Html$Attributes$class('is-solid-bottom') : ((A2($elm$core$Basics$modBy, sqrtSize, rowNumber) === 1) ? $elm$html$Html$Attributes$class('is-solid-top') : $elm$html$Html$Attributes$class(''));
+	});
+var $author$project$Main$makeVerticalLine = F2(
+	function (sqrtSize, x) {
+		return (!A2($elm$core$Basics$modBy, sqrtSize, x)) ? $elm$html$Html$Attributes$class('is-solid-right') : ((A2($elm$core$Basics$modBy, sqrtSize, x) === 1) ? $elm$html$Html$Attributes$class('is-solid-left') : $elm$html$Html$Attributes$class(''));
+	});
+var $elm$core$Basics$round = _Basics_round;
+var $elm$core$Basics$sqrt = _Basics_sqrt;
+var $elm$html$Html$td = _VirtualDom_node('td');
+var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
+var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
+var $elm$html$Html$tr = _VirtualDom_node('tr');
+var $author$project$Main$makeTableRow = F3(
+	function (size, index, numbers) {
+		var sqrtSize = $elm$core$Basics$round(
+			$elm$core$Basics$sqrt(size));
+		return A2(
+			$elm$html$Html$tr,
+			_List_fromArray(
+				[
+					A2($author$project$Main$makeHorizontalLine, sqrtSize, index)
+				]),
+			A2(
+				$elm$core$List$map,
+				function (x) {
+					return A2(
+						$elm$html$Html$td,
+						_List_fromArray(
+							[
+								A2($author$project$Main$makeVerticalLine, sqrtSize, x)
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text(
+								$elm$core$String$fromInt(x))
+							]));
+				},
+				numbers));
+	});
+var $elm$core$List$drop = F2(
+	function (n, list) {
+		drop:
+		while (true) {
+			if (n <= 0) {
+				return list;
+			} else {
+				if (!list.b) {
+					return list;
+				} else {
+					var x = list.a;
+					var xs = list.b;
+					var $temp$n = n - 1,
+						$temp$list = xs;
+					n = $temp$n;
+					list = $temp$list;
+					continue drop;
+				}
+			}
+		}
+	});
+var $elm$core$List$takeReverse = F3(
+	function (n, list, kept) {
+		takeReverse:
+		while (true) {
+			if (n <= 0) {
+				return kept;
+			} else {
+				if (!list.b) {
+					return kept;
+				} else {
+					var x = list.a;
+					var xs = list.b;
+					var $temp$n = n - 1,
+						$temp$list = xs,
+						$temp$kept = A2($elm$core$List$cons, x, kept);
+					n = $temp$n;
+					list = $temp$list;
+					kept = $temp$kept;
+					continue takeReverse;
+				}
+			}
+		}
+	});
+var $elm$core$List$takeTailRec = F2(
+	function (n, list) {
+		return $elm$core$List$reverse(
+			A3($elm$core$List$takeReverse, n, list, _List_Nil));
+	});
+var $elm$core$List$takeFast = F3(
+	function (ctr, n, list) {
+		if (n <= 0) {
+			return _List_Nil;
+		} else {
+			var _v0 = _Utils_Tuple2(n, list);
+			_v0$1:
+			while (true) {
+				_v0$5:
+				while (true) {
+					if (!_v0.b.b) {
+						return list;
+					} else {
+						if (_v0.b.b.b) {
+							switch (_v0.a) {
+								case 1:
+									break _v0$1;
+								case 2:
+									var _v2 = _v0.b;
+									var x = _v2.a;
+									var _v3 = _v2.b;
+									var y = _v3.a;
+									return _List_fromArray(
+										[x, y]);
+								case 3:
+									if (_v0.b.b.b.b) {
+										var _v4 = _v0.b;
+										var x = _v4.a;
+										var _v5 = _v4.b;
+										var y = _v5.a;
+										var _v6 = _v5.b;
+										var z = _v6.a;
+										return _List_fromArray(
+											[x, y, z]);
+									} else {
+										break _v0$5;
+									}
+								default:
+									if (_v0.b.b.b.b && _v0.b.b.b.b.b) {
+										var _v7 = _v0.b;
+										var x = _v7.a;
+										var _v8 = _v7.b;
+										var y = _v8.a;
+										var _v9 = _v8.b;
+										var z = _v9.a;
+										var _v10 = _v9.b;
+										var w = _v10.a;
+										var tl = _v10.b;
+										return (ctr > 1000) ? A2(
+											$elm$core$List$cons,
+											x,
+											A2(
+												$elm$core$List$cons,
+												y,
+												A2(
+													$elm$core$List$cons,
+													z,
+													A2(
+														$elm$core$List$cons,
+														w,
+														A2($elm$core$List$takeTailRec, n - 4, tl))))) : A2(
+											$elm$core$List$cons,
+											x,
+											A2(
+												$elm$core$List$cons,
+												y,
+												A2(
+													$elm$core$List$cons,
+													z,
+													A2(
+														$elm$core$List$cons,
+														w,
+														A3($elm$core$List$takeFast, ctr + 1, n - 4, tl)))));
+									} else {
+										break _v0$5;
+									}
+							}
+						} else {
+							if (_v0.a === 1) {
+								break _v0$1;
+							} else {
+								break _v0$5;
+							}
+						}
+					}
+				}
+				return list;
+			}
+			var _v1 = _v0.b;
+			var x = _v1.a;
+			return _List_fromArray(
+				[x]);
+		}
+	});
+var $elm$core$List$take = F2(
+	function (n, list) {
+		return A3($elm$core$List$takeFast, 0, n, list);
+	});
+var $author$project$Main$splitList = F2(
+	function (split, list) {
+		return _Utils_eq(list, _List_Nil) ? _List_Nil : ((split === 1) ? _List_fromArray(
+			[list]) : A2(
+			$elm$core$List$cons,
+			A2($elm$core$List$take, split, list),
+			A2(
+				$author$project$Main$splitList,
+				split,
+				A2($elm$core$List$drop, split, list))));
+	});
+var $elm$html$Html$table = _VirtualDom_node('table');
+var $author$project$Main$makeTable = F2(
+	function (size, listOfNumbers) {
+		var seperatedListOfNumbers = A2($author$project$Main$splitList, size, listOfNumbers);
+		return A2(
+			$elm$html$Html$table,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$class('table'),
+					$elm$html$Html$Attributes$class('is-bordered'),
+					$elm$html$Html$Attributes$class('is-centered')
+				]),
+			A2(
+				$elm$core$List$indexedMap,
+				F2(
+					function (index, x) {
+						return A3($author$project$Main$makeTableRow, size, index, x);
+					}),
+				seperatedListOfNumbers));
+	});
 var $elm$virtual_dom$VirtualDom$Normal = function (a) {
 	return {$: 'Normal', a: a};
 };
@@ -5455,8 +5687,27 @@ var $elm$html$Html$Events$onClick = function (msg) {
 		'click',
 		$elm$json$Json$Decode$succeed(msg));
 };
-var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
-var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
+var $elm$core$List$repeatHelp = F3(
+	function (result, n, value) {
+		repeatHelp:
+		while (true) {
+			if (n <= 0) {
+				return result;
+			} else {
+				var $temp$result = A2($elm$core$List$cons, value, result),
+					$temp$n = n - 1,
+					$temp$value = value;
+				result = $temp$result;
+				n = $temp$n;
+				value = $temp$value;
+				continue repeatHelp;
+			}
+		}
+	});
+var $elm$core$List$repeat = F2(
+	function (n, value) {
+		return A3($elm$core$List$repeatHelp, _List_Nil, n, value);
+	});
 var $author$project$Main$view = function (model) {
 	return A2(
 		$elm$html$Html$div,
@@ -5485,6 +5736,69 @@ var $author$project$Main$view = function (model) {
 				_List_fromArray(
 					[
 						$elm$html$Html$text('Roll')
+					])),
+				A2(
+				$elm$html$Html$div,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('has-text-centered')
+					]),
+				_List_fromArray(
+					[
+						A2(
+						$author$project$Main$makeTable,
+						9,
+						$elm$core$List$concat(
+							A2(
+								$elm$core$List$repeat,
+								9,
+								A2($elm$core$List$range, 1, 9))))
+					])),
+				A2(
+				$elm$html$Html$div,
+				_List_Nil,
+				_List_fromArray(
+					[
+						A2(
+						$elm$html$Html$div,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('has-text-centered')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								$author$project$Main$makeTable,
+								16,
+								$elm$core$List$concat(
+									A2(
+										$elm$core$List$repeat,
+										16,
+										A2($elm$core$List$range, 1, 16))))
+							]))
+					])),
+				A2(
+				$elm$html$Html$div,
+				_List_Nil,
+				_List_fromArray(
+					[
+						A2(
+						$elm$html$Html$div,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('has-text-centered')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								$author$project$Main$makeTable,
+								16,
+								$elm$core$List$concat(
+									A2(
+										$elm$core$List$repeat,
+										16,
+										A2($elm$core$List$range, 1, 16))))
+							]))
 					]))
 			]));
 };

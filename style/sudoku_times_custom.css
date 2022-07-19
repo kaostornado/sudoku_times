@@ -1,0 +1,32 @@
+table.is-centered {
+    margin-left:auto; 
+    margin-right:auto;
+}
+
+table {
+    margin:1em auto;
+}
+
+td {
+    height:40px;
+    width:40px;
+    text-align:center;
+}
+
+td.is-solid-right {
+    border-right:2px solid !important
+}
+
+td.is-solid-left {
+    border-left:2px solid !important
+}
+
+tr.is-solid-top {
+    border-top:2px solid !important;
+    border-top-style:solid !important
+}
+
+tr.is-solid-bottom {
+    border-bottom:2px solid !important;
+    border-bottom-style:solid !important
+}
