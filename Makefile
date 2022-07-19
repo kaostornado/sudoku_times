@@ -1,3 +1,3 @@
 ## make elm build
 elm-watch:
-	elm-live src/Main.elm --no-server -- --output="../src/main.js"
+	(cd src && elm-live Main.elm --no-server -- --output=main.js)

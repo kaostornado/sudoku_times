@@ -75,14 +75,7 @@ subscriptions model =
 view : Model -> Html Msg
 view model =
     div [ class "has-text-centered" ]
-        [ h1 [] [ text (String.fromInt model.dieFace) ]
-        , button
-            [ class "button"
-            , class "has-background-danger-light"
-            , onClick Roll
-            ]
-            [ text "Roll" ]
-        , div [ class "has-text-centered" ]
+        [ div [ class "has-text-centered" ]
             [ makeTable 9 (List.concat <| List.repeat 9 <| List.range 1 9) ]
         , div []
             [ div [ class "has-text-centered" ]
