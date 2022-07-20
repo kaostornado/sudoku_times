@@ -5446,6 +5446,16 @@ var $elm$core$List$concat = function (lists) {
 	return A3($elm$core$List$foldr, $elm$core$List$append, _List_Nil, lists);
 };
 var $elm$html$Html$div = _VirtualDom_node('div');
+var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
+var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
+var $author$project$Main$blankIfZero = function (x) {
+	if (!x) {
+		return $elm$html$Html$text('');
+	} else {
+		return $elm$html$Html$text(
+			$elm$core$String$fromInt(x));
+	}
+};
 var $elm$core$Basics$modBy = _Basics_modBy;
 var $author$project$Main$makeHorizontalLine = F2(
 	function (sqrtSize, index) {
@@ -5453,40 +5463,39 @@ var $author$project$Main$makeHorizontalLine = F2(
 		return (!A2($elm$core$Basics$modBy, sqrtSize, rowNumber)) ? $elm$html$Html$Attributes$class('is-solid-bottom') : ((A2($elm$core$Basics$modBy, sqrtSize, rowNumber) === 1) ? $elm$html$Html$Attributes$class('is-solid-top') : $elm$html$Html$Attributes$class(''));
 	});
 var $author$project$Main$makeVerticalLine = F2(
-	function (sqrtSize, x) {
-		return (!A2($elm$core$Basics$modBy, sqrtSize, x)) ? $elm$html$Html$Attributes$class('is-solid-right') : ((A2($elm$core$Basics$modBy, sqrtSize, x) === 1) ? $elm$html$Html$Attributes$class('is-solid-left') : $elm$html$Html$Attributes$class(''));
+	function (sqrtSize, index) {
+		var newIndex = index + 1;
+		return (!A2($elm$core$Basics$modBy, sqrtSize, newIndex)) ? $elm$html$Html$Attributes$class('is-solid-right') : ((A2($elm$core$Basics$modBy, sqrtSize, newIndex) === 1) ? $elm$html$Html$Attributes$class('is-solid-left') : $elm$html$Html$Attributes$class(''));
 	});
 var $elm$core$Basics$round = _Basics_round;
 var $elm$core$Basics$sqrt = _Basics_sqrt;
 var $elm$html$Html$td = _VirtualDom_node('td');
-var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
-var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
 var $elm$html$Html$tr = _VirtualDom_node('tr');
 var $author$project$Main$makeTableRow = F3(
-	function (size, index, numbers) {
+	function (size, rowIndex, numbers) {
 		var sqrtSize = $elm$core$Basics$round(
 			$elm$core$Basics$sqrt(size));
 		return A2(
 			$elm$html$Html$tr,
 			_List_fromArray(
 				[
-					A2($author$project$Main$makeHorizontalLine, sqrtSize, index)
+					A2($author$project$Main$makeHorizontalLine, sqrtSize, rowIndex)
 				]),
 			A2(
-				$elm$core$List$map,
-				function (x) {
-					return A2(
-						$elm$html$Html$td,
-						_List_fromArray(
-							[
-								A2($author$project$Main$makeVerticalLine, sqrtSize, x)
-							]),
-						_List_fromArray(
-							[
-								$elm$html$Html$text(
-								$elm$core$String$fromInt(x))
-							]));
-				},
+				$elm$core$List$indexedMap,
+				F2(
+					function (index, x) {
+						return A2(
+							$elm$html$Html$td,
+							_List_fromArray(
+								[
+									A2($author$project$Main$makeVerticalLine, sqrtSize, index)
+								]),
+							_List_fromArray(
+								[
+									$author$project$Main$blankIfZero(x)
+								]));
+					}),
 				numbers));
 	});
 var $elm$core$List$drop = F2(
@@ -5657,7 +5666,8 @@ var $author$project$Main$makeTable = F2(
 				[
 					$elm$html$Html$Attributes$class('table'),
 					$elm$html$Html$Attributes$class('is-bordered'),
-					$elm$html$Html$Attributes$class('is-centered')
+					$elm$html$Html$Attributes$class('is-centered'),
+					$elm$html$Html$Attributes$class('is-mobile')
 				]),
 			A2(
 				$elm$core$List$indexedMap,
@@ -5759,6 +5769,20 @@ var $author$project$Main$view = function (model) {
 										16,
 										A2($elm$core$List$range, 1, 16))))
 							]))
+					])),
+				A2(
+				$elm$html$Html$div,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('has-text-centered')
+					]),
+				_List_fromArray(
+					[
+						A2(
+						$author$project$Main$makeTable,
+						4,
+						_List_fromArray(
+							[1, 2, 0, 4, 2, 3, 4, 1, 0, 4, 1, 2, 4, 1, 2, 3]))
 					]))
 			]));
 };

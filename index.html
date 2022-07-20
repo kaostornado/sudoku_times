@@ -4,23 +4,133 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style/bulma-0.9.4/bulma/css/bulma.min.css">
-  <link rel="stylesheet" href="style/bulma-0.9.4/bulma/css/bulma-rtl.min.css">
+  <link rel="stylesheet" href="style/bulma-0.9.4/bulma/css/sudoku_times_bulma_custom.css">
+  <!-- <link rel="stylesheet" href="style/bulma-0.9.4/bulma/css/bulma-rtl.min.css"> -->
   <link rel="stylesheet" href="style/sudoku_times_custom.css">
+  <!--load all Font Awesome styles -->
+  <link href="style/fontawesome-free-6.1.1-web/css/all.css" rel="stylesheet">
   <title>Main</title>
   <script src="src/main.js"></script>
 </head>
 
 <body>
-
-  <div class="mt-3 columns is-centered">
-    <div class="column is-half">
-    <div  id="myapp"></div>
-    <script>
-    var app = Elm.Main.init({
-      node: document.getElementById('myapp')
-    });
-    </script>
-    </div>
-  </div>
+	  <section class="hero is-primary is-large">
+		<div class="hero-head">
+		  <nav class="navbar is-spaced">
+			  <div class="navbar-brand">
+				<a class="navbar-item">
+					<img src="sudoku_logo.png" style="height:80px">
+				</a>
+				<p class="title pt-5 m-1">
+					Sudoku Times
+				  </p>
+				<span class="navbar-burger" data-target="navbarMenuHeroB">
+				  <span></span>
+				  <span></span>
+				  <span></span>
+				</span>
+			  </div>
+			  <div id="navbarMenuHeroA" class="navbar-menu">
+				<div class="navbar-start">
+				</div>
+			  </div>
+			  <div id="navbarMenuHeroB" class="navbar-menu">
+				<div class="navbar-end">
+				  <a class="navbar-item">
+					Examples
+				  </a>
+				  <a class="navbar-item">
+					Documentation
+				  </a>
+				  <span class="navbar-item">
+					<a class="button is-info is-inverted" href="https://github.com/kaostornado/sudoku_times">
+					  <span class="icon">
+						<i class="fab fa-github"></i>
+					  </span>
+					  <span>Github</span>
+					</a>
+				  </span>
+				</div>
+			  </div>
+		  </nav>
+		</div>
+		</section>
+<section class="section ">
+	<div class="columns is-tablet is-centered">
+		<div class="column is-one-third has-text-centered">
+			<div class="box has-background-danger-light">
+				<p>
+					It is possible to solve 9x9 sudokus.
+				</p>
+				<a class="button is-danger m-3" href="./sudoku_page.html">
+					<span class="icon">
+						<i class="fab fa-solid fa-otter"></i>
+					</span>
+					<p>
+						Click me
+					</p>
+				</a>
+			</div>
+		</div>
+		<div class="column is-one-third has-text-centered">
+			<div class="box has-background-success-light">
+				<p>
+					It is possible to solve 16x16 sudokus.
+				</p>
+				<a class="button is-success m-3" href="./sudoku_page.html">
+					<span class="icon">
+						<i class="fab fa-solid fa-fish-fins"></i>
+					</span>
+					<p>
+						Click me
+					</p>
+				</a>
+			</div>
+		</div>
+		</div>
+		<div class="columns is-centered is-tablet">
+			<div class="column is-two-thirds has-text-centered">
+				<div class="box has-background-info-light">
+					<p>
+						It is possible to solve 25x25 sudokus.
+					</p>
+					<a class="button is-info m-3" href="./sudoku_page.html">
+						<span class="icon">
+							<i class="fab fa-solid fa-hippo"></i>
+						</span>
+						<p>
+							Click me
+						</p>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 </body>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+
+	// Get all "navbar-burger" elements
+	const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+	// Add a click event on each of them
+	$navbarBurgers.forEach( el => {
+ 	 el.addEventListener('click', () => {
+
+	// Get the target from the "data-target" attribute
+	const target = el.dataset.target;
+	const $target = document.getElementById(target);
+
+	// Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+	el.classList.toggle('is-active');
+	$target.classList.toggle('is-active');
+
+  });
+});
+
+});
+</script>
+
 </html>

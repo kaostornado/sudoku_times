@@ -1,4 +1,4 @@
-module Main exposing (main)
+module Main exposing (..)
 
 import Browser
 import Html exposing (..)
@@ -87,6 +87,8 @@ view model =
                 [ makeTable 16 (List.concat <| List.repeat 16 <| List.range 1 16)
                 ]
             ]
+        , div [ class "has-text-centered" ]
+            [ makeTable 4 [ 1, 2, 0, 4, 2, 3, 4, 1, 0, 4, 1, 2, 4, 1, 2, 3 ] ]
         ]
 
 
@@ -94,11 +96,25 @@ view model =
 -- VIEW Functions
 
 
-makeVerticalLine sqrtSize x =
-    if modBy sqrtSize x == 0 then
+blankIfZero : Int -> Html Msg
+blankIfZero x =
+    case x of
+        0 ->
+            text ""
+
+        _ ->
+            text <| String.fromInt x
+
+
+makeVerticalLine sqrtSize index =
+    let
+        newIndex =
+            index + 1
+    in
+    if modBy sqrtSize newIndex == 0 then
         class "is-solid-right"
 
-    else if modBy sqrtSize x == 1 then
+    else if modBy sqrtSize newIndex == 1 then
         class "is-solid-left"
 
     else
@@ -120,13 +136,13 @@ makeHorizontalLine sqrtSize index =
         class ""
 
 
-makeTableRow size index numbers =
+makeTableRow size rowIndex numbers =
     let
         sqrtSize =
             round <| sqrt <| toFloat size
     in
-    tr [ makeHorizontalLine sqrtSize index ] <|
-        List.map (\x -> td [ makeVerticalLine sqrtSize x ] [ text <| String.fromInt x ]) numbers
+    tr [ makeHorizontalLine sqrtSize rowIndex ] <|
+        List.indexedMap (\index x -> td [ makeVerticalLine sqrtSize index ] [ blankIfZero x ]) numbers
 
 
 splitList : Int -> List a -> List (List a)
@@ -146,5 +162,5 @@ makeTable size listOfNumbers =
         seperatedListOfNumbers =
             splitList size listOfNumbers
     in
-    table [ class "table", class "is-bordered", class "is-centered" ] <|
+    table [ class "table", class "is-bordered", class "is-centered", class "is-mobile" ] <|
         List.indexedMap (\index x -> makeTableRow size index x) seperatedListOfNumbers

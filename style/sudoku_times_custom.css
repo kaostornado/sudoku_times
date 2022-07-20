@@ -30,3 +30,7 @@ tr.is-solid-bottom {
     border-bottom:2px solid !important;
     border-bottom-style:solid !important
 }
+
+.container {
+    margin:0;
+}

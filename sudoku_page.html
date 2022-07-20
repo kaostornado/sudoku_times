@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style/bulma-0.9.4/bulma/css/bulma.min.css">
+  <link rel="stylesheet" href="style/bulma-0.9.4/bulma/css/bulma-rtl.min.css">
+  <link rel="stylesheet" href="style/sudoku_times_custom.css">
+  <title>Main</title>
+  <script src="src/main.js"></script>
+</head>
+
+<body>
+
+  <div class="mt-3 columns is-centered">
+    <div class="column is-half">
+    <div  id="myapp"></div>
+    <script>
+    var app = Elm.Main.init({
+      node: document.getElementById('myapp')
+    });
+    </script>
+    </div>
+  </div>
+</body>
+</html>
