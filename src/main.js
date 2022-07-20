@@ -5717,6 +5717,20 @@ var $author$project$Main$view = function (model) {
 					[
 						A2(
 						$author$project$Main$makeTable,
+						4,
+						_List_fromArray(
+							[1, 2, 0, 4, 2, 3, 4, 1, 0, 4, 1, 2, 4, 1, 2, 3]))
+					])),
+				A2(
+				$elm$html$Html$div,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('has-text-centered')
+					]),
+				_List_fromArray(
+					[
+						A2(
+						$author$project$Main$makeTable,
 						9,
 						$elm$core$List$concat(
 							A2(
@@ -5769,20 +5783,6 @@ var $author$project$Main$view = function (model) {
 										16,
 										A2($elm$core$List$range, 1, 16))))
 							]))
-					])),
-				A2(
-				$elm$html$Html$div,
-				_List_fromArray(
-					[
-						$elm$html$Html$Attributes$class('has-text-centered')
-					]),
-				_List_fromArray(
-					[
-						A2(
-						$author$project$Main$makeTable,
-						4,
-						_List_fromArray(
-							[1, 2, 0, 4, 2, 3, 4, 1, 0, 4, 1, 2, 4, 1, 2, 3]))
 					]))
 			]));
 };

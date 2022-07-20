@@ -76,6 +76,8 @@ view : Model -> Html Msg
 view model =
     div [ class "has-text-centered" ]
         [ div [ class "has-text-centered" ]
+            [ makeTable 4 [ 1, 2, 0, 4, 2, 3, 4, 1, 0, 4, 1, 2, 4, 1, 2, 3 ] ]
+        , div [ class "has-text-centered" ]
             [ makeTable 9 (List.concat <| List.repeat 9 <| List.range 1 9) ]
         , div []
             [ div [ class "has-text-centered" ]
@@ -87,8 +89,6 @@ view model =
                 [ makeTable 16 (List.concat <| List.repeat 16 <| List.range 1 16)
                 ]
             ]
-        , div [ class "has-text-centered" ]
-            [ makeTable 4 [ 1, 2, 0, 4, 2, 3, 4, 1, 0, 4, 1, 2, 4, 1, 2, 3 ] ]
         ]
 
 
