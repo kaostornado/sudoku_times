@@ -1,4 +1,5 @@
-## make elm build
+## make elm build 
+## One need to have the elm-live module in order to run this
 elm-watch:
 	(cd src && elm-live Main.elm --no-server -- --output=main.js)
 
